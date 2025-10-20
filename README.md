@@ -1,4 +1,4 @@
-# Invest Assistant
+﻿# Invest Assistant
 
 AI 기반 투자 어시스턴트 시스템입니다. 주식 거래, 환전, 포트폴리오 관리 등의 기능을 제공하는 웹 애플리케이션입니다.
 
@@ -38,11 +38,12 @@ source venv/bin/activate  # macOS/Linux
 
 # 의존성 설치
 pip install -r requirements.txt
+pip install -e .
 ```
 
 ### 2. 환경 변수 설정
 
-`.env` 파일을 생성하고 OpenAI API 키를 설정하세요:
+프로젝트 루트 폴더에 `.env` 파일을 생성하고 OpenAI API 키를 설정하세요:
 
 ```bash
 # .env 파일 생성
