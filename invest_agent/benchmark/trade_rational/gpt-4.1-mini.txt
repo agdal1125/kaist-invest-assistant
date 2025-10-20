@@ -1,0 +1,406 @@
+Prompt:  (삼성전자를) 보통가 60000원에 50주 구매해줘.
+Agent:  구매할 거래소를 알려주세요. KRX, NXT 등 중에서요.
+Human:  KRX에서 거래해줘.
+Agent:  None
+Tool result:  다음 함수를 실행합니다: stock_buy
+exchange: KRX
+order_code: 01
+quantity: 50
+price: 60000
+
+
+Correct:  True
+----------------------------------------------------------------------------------------------------
+Prompt:  (삼성전자를) 60000원에 50주 구매해줘. 거래소는 KRX로 해줘
+Agent:  주문코드를 알려주세요. (예: 보통가, 시장가 등)
+Human:  보통가로 해줘.
+Agent:  None
+Tool result:  다음 함수를 실행합니다: stock_buy
+exchange: KRX
+order_code: 01
+quantity: 50
+price: 60000
+
+
+Correct:  True
+----------------------------------------------------------------------------------------------------
+Prompt:  (삼성전자를) 60000원에 구매해줘. 거래소는 KRX로 해줘
+Agent:  수량을 알려주세요. 몇 주를 구매하시겠습니까?
+Human:  100주 사줘.
+Agent:  None
+Tool result:  다음 함수를 실행합니다: stock_buy
+exchange: KRX
+order_code: 01
+quantity: 100
+price: 60000
+
+
+Correct:  True
+----------------------------------------------------------------------------------------------------
+Prompt:  (삼성전자를) 60000원에 구매해줘
+Agent:  구매할 거래소와 주문코드를 알려주세요. 예: KRX, 주문코드 01(보통가) 등.
+Human:  KRX 거래소에서 보통가로 100주 구매해줘.
+Agent:  None
+Tool result:  다음 함수를 실행합니다: stock_buy
+exchange: KRX
+order_code: 01
+quantity: 100
+price: 60000
+
+
+Correct:  True
+----------------------------------------------------------------------------------------------------
+Prompt:  (삼성전자를) 최유리지정가로 구매해줘
+Agent:  거래소와 주문 수량을 알려주세요.
+Human:  거래소는 KRX, 수량은 100주야.
+Agent:  None
+Tool result:  다음 함수를 실행합니다: stock_buy
+exchange: KRX
+order_code: 12
+quantity: 100
+price: -1
+
+
+Correct:  True
+----------------------------------------------------------------------------------------------------
+Prompt:  (삼성전자를) 종가매매로 구매해줘
+Agent:  종가매매 주문거래소를 알려주세요. KRX, NXT 등 중에서 선택해 주세요.
+Human:  NXT에서 100주 주문해줘.
+Agent:  None
+Tool result:  다음 함수를 실행합니다: stock_buy
+exchange: NXT
+order_code: N7
+quantity: 100
+price: -1
+
+
+Correct:  True
+----------------------------------------------------------------------------------------------------
+Prompt:  (삼성전자를) 60000원에 300만원만큼 구매해줘
+Agent:  주문 거래소와 주문 코드를 알려주세요.
+Human:  주문 거래소는 KRX, 주문 코드는 보통가야.
+Agent:  60000원에 300만원어치면 50주 매수 가능합니다. 주문을 실행하겠습니다.
+Tool result:  다음 함수를 실행합니다: stock_buy
+exchange: KRX
+order_code: 01
+quantity: 50
+price: 60000
+
+
+Correct:  True
+----------------------------------------------------------------------------------------------------
+Prompt:  (삼성전자를) 60000원에 구매해줘
+Agent:  거래소와 주문코드를 알려주세요. 예를 들어, 주문코드는 보통가(01) 등이 있습니다.
+Human:  거래소는 KRX, 주문코드는 조건부지정가로 해줘.
+Agent:  구매 수량을 알려주세요.
+Human:  100주 사줘.
+Agent:  None
+Tool result:  다음 함수를 실행합니다: stock_buy
+exchange: KRX
+order_code: 06
+quantity: 100
+price: 60000
+
+
+Correct:  True
+----------------------------------------------------------------------------------------------------
+Prompt:  (삼성전자를) 50주 구매해줘
+Agent:  주문 거래소와 주문코드를 알려주세요. 예를 들어, KRX 시장에서 보통가(01) 주문 등입니다.
+Human:  KRX 시장에서 삼성전자 50주를 시장가로 주문해줘.
+Agent:  None
+Tool result:  다음 함수를 실행합니다: stock_buy
+exchange: KRX
+order_code: 05
+quantity: 50
+price: -1
+
+
+Correct:  True
+----------------------------------------------------------------------------------------------------
+Prompt:  (LG화학을) 80000원에 20주 매수해줘.
+Agent:  주문 거래소와 주문코드를 알려주세요. (예: KRX, 01)
+Human:  거래소는 SOR, 주문코드는 보통가야.
+Agent:  None
+Tool result:  다음 함수를 실행합니다: stock_buy
+exchange: SOR
+order_code: 01
+quantity: 20
+price: 80000
+
+
+Correct:  True
+----------------------------------------------------------------------------------------------------
+Prompt:  (현대차) 시장가로 30주 매수해줘.
+Agent:  주문 거래소 정보를 알려주세요. (예: KRX, NXT)
+Human:  KRX로 해줘.
+Agent:  None
+Tool result:  다음 함수를 실행합니다: stock_buy
+exchange: KRX
+order_code: 05
+quantity: 30
+price: -1
+
+
+Correct:  True
+----------------------------------------------------------------------------------------------------
+Prompt:  (카카오를) IOC보통가로 40주 매도해줘.
+Agent:  주문거래소와 주문 단가를 알려주세요. IOC보통가는 단가 필수가 있습니다.
+Human:  주문거래소는 SOR, 단가는 150000원으로 해줘.
+Agent:  None
+Tool result:  다음 함수를 실행합니다: stock_sell
+exchange: SOR
+order_code: X1
+quantity: 40
+price: 150000
+
+
+Correct:  True
+----------------------------------------------------------------------------------------------------
+Prompt:  (SK하이닉스를) 10주 매도해줘.
+Agent:  매도할 거래소와 주문코드를 알려주세요. 단가가 필요한 주문코드인지도 알려주시면 함께 알려주세요.
+Human:  거래소는 KRX고, 주문코드는 보통가야. 단가는 120000원으로 해줘.
+Agent:  None
+Tool result:  다음 함수를 실행합니다: stock_sell
+exchange: KRX
+order_code: 01
+quantity: 10
+price: 120000
+
+
+Correct:  True
+----------------------------------------------------------------------------------------------------
+Prompt:  (네이버를) FOK시장가로 매수해줘.
+Agent:  몇 주를 매수할지 수량을 알려주세요.
+Human:  15주 매수해줘.
+Agent:  주문할 거래소를 알려주세요. (KRX, NXT 등)
+주문 거래소가 필요합니다. 네이버 주식은 KRX에서 거래되니 KRX로 할까요?
+Human:  KRX로 해줘.
+Agent:  None
+Tool result:  다음 함수를 실행합니다: stock_buy
+exchange: KRX
+order_code: Y5
+quantity: 15
+price: -1
+
+
+Correct:  True
+----------------------------------------------------------------------------------------------------
+Prompt:  (셀트리온) 최우선지정가로 매수해줘
+Agent:  거래소, 수량, 단가 정보를 알려주십시오. 최우선지정가는 단가가 필요 없습니다.
+Human:  거래소는 NXT고 수량은 25주야.
+Agent:  None
+Tool result:  다음 함수를 실행합니다: stock_buy
+exchange: NXT
+order_code: 13
+quantity: 25
+price: -1
+
+
+Correct:  True
+----------------------------------------------------------------------------------------------------
+Prompt:  (기아를) 60000원에 5주 매도해줘
+Agent:  주문 거래소를 알려주세요. KRX, NXT 중 어디로 매도할까요?
+Human:  KRX로 매도해줘.
+Agent:  매도 주문의 주문코드가 필요합니다. 어떤 주문코드로 매도할까요? (예: 보통가 01, 시장가 05 등)
+Human:  조건부지정가로 매도해줘.
+Agent:  None
+Tool result:  다음 함수를 실행합니다: stock_sell
+exchange: KRX
+order_code: 06
+quantity: 5
+price: 60000
+
+
+Correct:  True
+----------------------------------------------------------------------------------------------------
+Prompt:  (현대차) 100000원에 200만원만큼 매수해줘.
+Agent:  주문할 주식 수량을 알려주세요. 200만원을 10만원 단가로 나누면 20주입니다. 20주로 주문할까요?
+Human:  20주로 주문해줘.
+Agent:  어느 거래소에서 주문하시겠습니까? (예: KRX, NXT) 그리고 주문방식(주문코드)은 무엇인가요?
+Human:  KRX 거래소에서 보통가로 주문해줘.
+Agent:  None
+Tool result:  다음 함수를 실행합니다: stock_buy
+exchange: KRX
+order_code: 01
+quantity: 20
+price: 100000
+
+
+Correct:  True
+----------------------------------------------------------------------------------------------------
+Prompt:  (삼성전자를) 종가매매로 60주 매수해줘.
+Agent:  거래소 정보를 알려주시겠어요? KRX, NXT 중 하나를 선택해 주세요.
+Human:  NXT로 하자.
+Agent:  None
+Tool result:  다음 함수를 실행합니다: stock_buy
+exchange: NXT
+order_code: N7
+quantity: 60
+price: -1
+
+
+Correct:  True
+----------------------------------------------------------------------------------------------------
+Prompt:  (LG화학을) 장전시간외 30주 매도해줘.
+Agent:  주문 거래소를 알려주세요. (예: KRX, NXT)
+Human:  KRX로.
+Agent:  None
+Tool result:  다음 함수를 실행합니다: stock_sell
+exchange: KRX
+order_code: 61
+quantity: 30
+price: -1
+
+
+Correct:  True
+----------------------------------------------------------------------------------------------------
+Prompt:  (SK하이닉스를) IOC시장가 매수해줘. 거래소 SOR
+Agent:  수량을 알려주세요.
+Human:  12주 매수해줘.
+Agent:  None
+Tool result:  다음 함수를 실행합니다: stock_buy
+exchange: SOR
+order_code: X5
+quantity: 12
+price: -1
+
+
+Correct:  True
+----------------------------------------------------------------------------------------------------
+Prompt:  (네이버를) FOK중간가로 매도해줘. 거래소 NXT
+Agent:  매도할 수량과 단가를 알려주세요. FOK중간가는 단가 필요 없습니다. 단가 정보가 필요 없음을 참고해 주세요. 우선 매도 수량만 알려주세요.
+Human:  18주 매도해줘.
+Agent:  None
+Tool result:  다음 함수를 실행합니다: stock_sell
+exchange: NXT
+order_code: Y7
+quantity: 18
+price: -1
+
+
+Correct:  True
+----------------------------------------------------------------------------------------------------
+Prompt:  (카카오) 22주 매수해줘.
+Agent:  어느 거래소에서 매수할까요? (예: KRX, NXT)
+Human:  KRX에서 중간가로 매수해줘.
+Agent:  None
+Tool result:  다음 함수를 실행합니다: stock_buy
+exchange: KRX
+order_code: 17
+quantity: 22
+price: -1
+
+
+Correct:  True
+----------------------------------------------------------------------------------------------------
+Prompt:  (셀트리온) 보통가로 14주 매수해줘.
+Agent:  주문 거래소를 알려주세요. KRX, NXT 등 중에서 선택해 주세요.
+Human:  KRX로 해줘.
+Agent:  보통가는 단가가 필요합니다. 주문 단가를 알려주세요.
+Human:  주문 단가는 65000원으로 해줘.
+Agent:  None
+Tool result:  다음 함수를 실행합니다: stock_buy
+exchange: KRX
+order_code: 01
+quantity: 14
+price: 65000
+
+
+Correct:  True
+----------------------------------------------------------------------------------------------------
+Prompt:  (기아를) 스톱지정가로 8주 매도해줘.
+Agent:  스톱지정가는 단가가 필수입니다. 주문 거래소와 단가를 알려주세요.
+기아 매도 주문을 위한 주문거래소와 단가를 알려주세요.
+Human:  주문 거래소는 NXT, 단가는 45000원이야.
+Agent:  None
+Tool result:  다음 함수를 실행합니다: stock_sell
+exchange: NXT
+order_code: 16
+quantity: 8
+price: 45000
+
+
+Correct:  True
+----------------------------------------------------------------------------------------------------
+Prompt:  (카카오) 75000원에 매수해줘.
+Agent:  몇 주를 매수할지 수량을 알려주세요.
+Human:  100주 매수해줘.
+Agent:  주문 거래소와 주문 코드를 알려주세요.
+Human:  거래소는 KRX, 주문 코드는 보통가로 해줘.
+Agent:  None
+Tool result:  다음 함수를 실행합니다: stock_buy
+exchange: KRX
+order_code: 01
+quantity: 100
+price: 75000
+
+
+Correct:  True
+----------------------------------------------------------------------------------------------------
+Prompt:  (삼성전자를) 매도해줘.
+Agent:  매도 주문을 위해 주문거래소, 주문코드, 수량, 단가 중 어떤 것을 원하시는지 알려주세요.
+Human:  주식은 10주, 시장가로 KRX에서 매도해줘.
+Agent:  None
+Tool result:  다음 함수를 실행합니다: stock_sell
+exchange: KRX
+order_code: 05
+quantity: 10
+price: -1
+
+
+Correct:  True
+----------------------------------------------------------------------------------------------------
+Prompt:  (LG화학) 최유리지정가로 50주 매도해줘.
+Agent:  매도 주문의 거래소를 알려주세요. (예: KRX, NXT 등)
+Human:  KRX에서 매도해줘.
+Agent:  최유리지정가는 단가 입력이 필요하지 않습니다. 50주, KRX, 최유리지정가로 매도 주문 실행하겠습니다. 잠시만 기다려주세요.
+Tool result:  다음 함수를 실행합니다: stock_sell
+exchange: KRX
+order_code: 12
+quantity: 50
+price: -1
+
+
+Correct:  True
+----------------------------------------------------------------------------------------------------
+Prompt:  (네이버를) 보통가로 매수해줘.
+Agent:  거래소, 수량, 단가를 알려주세요. 보통가는 단가가 꼭 필요합니다.
+Human:  거래소 NXT, 수량 5주, 단가 120000원으로 보통가 매수해줘.
+Agent:  None
+Tool result:  다음 함수를 실행합니다: stock_buy
+exchange: NXT
+order_code: 01
+quantity: 5
+price: 120000
+
+
+Correct:  True
+----------------------------------------------------------------------------------------------------
+Prompt:  (SK하이닉스를) 최유리지정가로 20주 매수해줘.
+Agent:  주문할 거래소를 알려주세요. (예: KRX, NXT)
+Human:  SOR로 해줘.
+Agent:  None
+Tool result:  다음 함수를 실행합니다: stock_buy
+exchange: SOR
+order_code: 12
+quantity: 20
+price: -1
+
+
+Correct:  True
+----------------------------------------------------------------------------------------------------
+Prompt:  (기아) IOC최유리로 16주 매수해줘.
+Agent:  주문 거래소를 알려주세요. KRX, NXT 중 어디서 매수하시겠습니까?
+Human:  KRX에서 매수해줘.
+Agent:  None
+Tool result:  다음 함수를 실행합니다: stock_buy
+exchange: KRX
+order_code: X2
+quantity: 16
+price: -1
+
+
+Correct:  True
+----------------------------------------------------------------------------------------------------
+[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+1.0

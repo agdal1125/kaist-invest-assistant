@@ -1,0 +1,566 @@
+[
+	{
+		"multi_turn": true,
+		"initial_prompt": "(삼성전자를) 보통가 60000원에 50주 구매해줘.",
+		"expected_response": {
+			"function_call": {
+				"name": "stock_buy",
+				"arguments": {
+					"exchange": "KRX",
+					"order_code": "01",
+					"quantity": 50,
+					"price": 60000
+				}
+			}
+		},
+		"additional_information": {
+			"exchange": "KRX"
+		},
+		"current_time": "2025-07-16 09:00:00"
+	},
+	{
+		"multi_turn": true,
+		"initial_prompt": "(삼성전자를) 60000원에 50주 구매해줘. 거래소는 KRX로 해줘",
+		"expected_response": {
+			"function_call": {
+				"name": "stock_buy",
+				"arguments": {
+					"exchange": "KRX",
+					"order_code": "01",
+					"quantity": 50,
+					"price": 60000
+				}
+			}
+		},
+		"additional_information": {
+			"order_code": "보통가"
+		}
+	},
+	{
+		"multi_turn": true,
+		"initial_prompt": "(삼성전자를) 60000원에 구매해줘. 거래소는 KRX로 해줘",
+		"expected_response": {
+			"function_call": {
+				"name": "stock_buy",
+				"arguments": {
+					"exchange": "KRX",
+					"order_code": "01",
+					"quantity": 100,
+					"price": 60000
+				}
+			}
+		},
+		"additional_information": {
+			"order_code": "보통가",
+			"quantity": 100
+		}
+	},
+	{
+		"multi_turn": true,
+		"initial_prompt": "(삼성전자를) 60000원에 구매해줘",
+		"expected_response": {
+			"function_call": {
+				"name": "stock_buy",
+				"arguments": {
+					"exchange": "KRX",
+					"order_code": "01",
+					"quantity": 100,
+					"price": 60000
+				}
+			}
+		},
+		"additional_information": {
+			"exchange": "KRX",
+			"order_code": "보통가",
+			"quantity": 100
+		}
+	},
+	{
+		"multi_turn": true,
+		"initial_prompt": "(삼성전자를) 최유리지정가로 구매해줘",
+		"expected_response": {
+			"function_call": {
+				"name": "stock_buy",
+				"arguments": {
+					"exchange": "KRX",
+					"order_code": "12",
+					"quantity": 100,
+					"price": -1
+				}
+			}
+		},
+		"additional_information": {
+			"exchange": "KRX",
+			"quantity": 100
+		}
+	},
+	{
+		"multi_turn": true,
+		"initial_prompt": "(삼성전자를) 종가매매로 구매해줘",
+		"expected_response": {
+			"function_call": {
+				"name": "stock_buy",
+				"arguments": {
+					"exchange": "NXT",
+					"order_code": "N7",
+					"quantity": 100,
+					"price": -1
+				}
+			}
+		},
+		"additional_information": {
+			"exchange": "NXT",
+			"quantity": 100
+		}
+	},
+	{
+		"multi_turn": true,
+		"initial_prompt": "(삼성전자를) 60000원에 300만원만큼 구매해줘",
+		"expected_response": {
+			"function_call": {
+				"name": "stock_buy",
+				"arguments": {
+					"exchange": "KRX",
+					"order_code": "01",
+					"quantity": 50,
+					"price": 60000
+				}
+			}
+		},
+		"additional_information": {
+			"exchange": "KRX",
+			"order_code": "보통가"
+		}
+	},
+	{
+		"multi_turn": true,
+		"initial_prompt": "(삼성전자를) 60000원에 구매해줘",
+		"expected_response": {
+			"function_call": {
+				"name": "stock_buy",
+				"arguments": {
+					"exchange": "KRX",
+					"order_code": "06",
+					"quantity": 100,
+					"price": 60000
+				}
+			}
+		},
+		"additional_information": {
+			"exchange": "KRX",
+			"order_code": "조건부지정가",
+			"quantity": 100
+		}
+	},
+	{
+		"multi_turn": true,
+		"initial_prompt": "(삼성전자를) 50주 구매해줘",
+		"expected_response": {
+			"function_call": {
+				"name": "stock_buy",
+				"arguments": {
+					"exchange": "KRX",
+					"order_code": "05",
+					"quantity": 50,
+					"price": -1
+				}
+			}
+		},
+		"additional_information": {
+			"exchange": "KRX",
+			"order_code": "시장가"
+		}
+	},
+	{
+		"multi_turn": true,
+		"initial_prompt": "(LG화학을) 80000원에 20주 매수해줘.",
+		"expected_response": {
+		  "function_call": {
+			"name": "stock_buy",
+			"arguments": {
+			  "exchange": "SOR",
+			  "order_code": "01",
+			  "quantity": 20,
+			  "price": 80000
+			}
+		  }
+		},
+		"additional_information": {
+		  "exchange": "SOR",
+		  "order_code": "보통가"
+		}
+	  },
+	  {
+		"multi_turn": true,
+		"initial_prompt": "(현대차) 시장가로 30주 매수해줘.",
+		"expected_response": {
+		  "function_call": {
+			"name": "stock_buy",
+			"arguments": {
+			  "exchange": "KRX",
+			  "order_code": "05",
+			  "quantity": 30,
+			  "price": -1
+			}
+		  }
+		},
+		"additional_information": {
+		  "exchange": "KRX"
+		}
+	  },
+	  {
+		"multi_turn": true,
+		"initial_prompt": "(카카오를) IOC보통가로 40주 매도해줘.",
+		"expected_response": {
+		  "function_call": {
+			"name": "stock_sell",
+			"arguments": {
+			  "exchange": "SOR",
+			  "order_code": "X1",
+			  "quantity": 40,
+			  "price": 150000
+			}
+		  }
+		},
+		"additional_information": {
+		  "exchange": "SOR",
+		  "price": 150000
+		}
+	  },
+	  {
+		"multi_turn": true,
+		"initial_prompt": "(SK하이닉스를) 10주 매도해줘.",
+		"expected_response": {
+		  "function_call": {
+			"name": "stock_sell",
+			"arguments": {
+			  "exchange": "KRX",
+			  "order_code": "01",
+			  "quantity": 10,
+			  "price": 120000
+			}
+		  }
+		},
+		"additional_information": {
+		  "exchange": "KRX",
+		  "order_code": "보통가",
+		  "price": 120000
+		}
+	  },
+	  {
+		"multi_turn": true,
+		"initial_prompt": "(네이버를) FOK시장가로 매수해줘.",
+		"expected_response": {
+		  "function_call": {
+			"name": "stock_buy",
+			"arguments": {
+			  "exchange": "KRX",
+			  "order_code": "Y5",
+			  "quantity": 15,
+			  "price": -1
+			}
+		  }
+		},
+		"additional_information": {
+		  "quantity": 15
+		}
+	  },
+	  {
+		"multi_turn": true,
+		"initial_prompt": "(셀트리온) 최우선지정가로 매수해줘",
+		"expected_response": {
+		  "function_call": {
+			"name": "stock_buy",
+			"arguments": {
+			  "exchange": "NXT",
+			  "order_code": "13",
+			  "quantity": 25,
+			  "price": -1
+			}
+		  }
+		},
+		"additional_information": {
+		  "exchange": "NXT",
+		  "quantity": "25"
+		}
+	  },
+	  {
+		"multi_turn": true,
+		"initial_prompt": "(기아를) 60000원에 5주 매도해줘",
+		"expected_response": {
+		  "function_call": {
+			"name": "stock_sell",
+			"arguments": {
+			  "exchange": "KRX",
+			  "order_code": "06",
+			  "quantity": 5,
+			  "price": 60000
+			}
+		  }
+		},
+		"additional_information": {
+		  "order_code": "조건부지정가"
+		}
+	  },
+	  {
+		"multi_turn": true,
+		"initial_prompt": "(현대차) 100000원에 200만원만큼 매수해줘.",
+		"expected_response": {
+		  "function_call": {
+			"name": "stock_buy",
+			"arguments": {
+			  "exchange": "KRX",
+			  "order_code": "01",
+			  "quantity": 20,
+			  "price": 100000
+			}
+		  }
+		},
+		"additional_information": {
+		  "exchange": "KRX",
+		  "order_code": "보통가"
+		}
+	  },
+	  {
+		"multi_turn": true,
+		"initial_prompt": "(삼성전자를) 종가매매로 60주 매수해줘.",
+		"expected_response": {
+		  "function_call": {
+			"name": "stock_buy",
+			"arguments": {
+			  "exchange": "NXT",
+			  "order_code": "N7",
+			  "quantity": 60,
+			  "price": -1
+			}
+		  }
+		},
+		"additional_information": {
+		  "exchange": "NXT"
+		}
+	  },
+	  {
+		"multi_turn": true,
+		"initial_prompt": "(LG화학을) 장전시간외 30주 매도해줘.",
+		"expected_response": {
+		  "function_call": {
+			"name": "stock_sell",
+			"arguments": {
+			  "exchange": "KRX",
+			  "order_code": "61",
+			  "quantity": 30,
+			  "price": -1
+			}
+		  }
+		},
+		"additional_information": {
+		  "exchange": "KRX"
+		}
+	  },
+	  {
+		"multi_turn": true,
+		"initial_prompt": "(SK하이닉스를) IOC시장가 매수해줘. 거래소 SOR",
+		"expected_response": {
+		  "function_call": {
+			"name": "stock_buy",
+			"arguments": {
+			  "exchange": "SOR",
+			  "order_code": "X5",
+			  "quantity": 12,
+			  "price": -1
+			}
+		  }
+		},
+		"additional_information": {
+		  "quantity": 12
+		}
+	  },
+	  {
+		"multi_turn": true,
+		"initial_prompt": "(네이버를) FOK중간가로 매도해줘. 거래소 NXT",
+		"expected_response": {
+		  "function_call": {
+			"name": "stock_sell",
+			"arguments": {
+			  "exchange": "NXT",
+			  "order_code": "Y7",
+			  "quantity": 18,
+			  "price": -1
+			}
+		  }
+		},
+		"additional_information": {
+		  "quantity": 18
+		}
+	  },
+	  {
+		"multi_turn": true,
+		"initial_prompt": "(카카오) 22주 매수해줘.",
+		"expected_response": {
+		  "function_call": {
+			"name": "stock_buy",
+			"arguments": {
+			  "exchange": "KRX",
+			  "order_code": "17",
+			  "quantity": 22,
+			  "price": -1
+			}
+		  }
+		},
+		"additional_information": {
+		  "exchange": "KRX",
+		  "order_code": "중간가"
+		}
+	  },
+	  {
+		"multi_turn": true,
+		"initial_prompt": "(셀트리온) 보통가로 14주 매수해줘.",
+		"expected_response": {
+		  "function_call": {
+			"name": "stock_buy",
+			"arguments": {
+			  "exchange": "KRX",
+			  "order_code": "01",
+			  "quantity": 14,
+			  "price": 65000
+			}
+		  }
+		},
+		"additional_information": {
+		  "price": 65000
+		}
+	  },
+	  {
+		"multi_turn": true,
+		"initial_prompt": "(기아를) 스톱지정가로 8주 매도해줘.",
+		"expected_response": {
+		  "function_call": {
+			"name": "stock_sell",
+			"arguments": {
+			  "exchange": "NXT",
+			  "order_code": "16",
+			  "quantity": 8,
+			  "price": 45000
+			}
+		  }
+		},
+		"additional_information": {
+		  "exchange": "NXT",
+		  "price": 45000
+		}
+	  },
+	  {
+		"multi_turn": true,
+		"initial_prompt": "(카카오) 75000원에 매수해줘.",
+		"expected_response": {
+		  "function_call": {
+			"name": "stock_buy",
+			"arguments": {
+			  "exchange": "KRX",
+			  "order_code": "01",
+			  "quantity": 100,
+			  "price": 75000
+			}
+		  }
+		},
+		"additional_information": {
+		  "exchange": "KRX",
+		  "order_code": "보통가",
+		  "quantity": 100
+		}
+	  },
+	  {
+		"multi_turn": true,
+		"initial_prompt": "(삼성전자를) 매도해줘.",
+		"expected_response": {
+		  "function_call": {
+			"name": "stock_sell",
+			"arguments": {
+			  "exchange": "KRX",
+			  "order_code": "05",
+			  "quantity": 10,
+			  "price": -1
+			}
+		  }
+		},
+		"additional_information": {
+		  "exchange": "KRX",
+		  "order_code": "시장가",
+		  "quantity": 10
+		}
+	  },
+	  {
+		"multi_turn": true,
+		"initial_prompt": "(LG화학) 최유리지정가로 50주 매도해줘.",
+		"expected_response": {
+		  "function_call": {
+			"name": "stock_sell",
+			"arguments": {
+			  "exchange": "KRX",
+			  "order_code": "12",
+			  "quantity": 50,
+			  "price": -1
+			}
+		  }
+		},
+		"additional_information": {
+		  "exchange": "KRX"
+		}
+	  },
+	  {
+		"multi_turn": true,
+		"initial_prompt": "(네이버를) 보통가로 매수해줘.",
+		"expected_response": {
+		  "function_call": {
+			"name": "stock_buy",
+			"arguments": {
+			  "exchange": "NXT",
+			  "order_code": "01",
+			  "quantity": 5,
+			  "price": 120000
+			}
+		  }
+		},
+		"additional_information": {
+		  "exchange": "NXT",
+		  "quantity": 5,
+		  "price": 120000
+		}
+	  },
+	  {
+		"multi_turn": true,
+		"initial_prompt": "(SK하이닉스를) 최유리지정가로 20주 매수해줘.",
+		"expected_response": {
+		  "function_call": {
+			"name": "stock_buy",
+			"arguments": {
+			  "exchange": "SOR",
+			  "order_code": "12",
+			  "quantity": 20,
+			  "price": -1
+			}
+		  }
+		},
+		"additional_information": {
+		  "exchange": "SOR"
+		}
+	  },
+	  {
+		"multi_turn": true,
+		"initial_prompt": "(기아) IOC최유리로 16주 매수해줘.",
+		"expected_response": {
+		  "function_call": {
+			"name": "stock_buy",
+			"arguments": {
+			  "exchange": "KRX",
+			  "order_code": "X2",
+			  "quantity": 16,
+			  "price": -1
+			}
+		  }
+		},
+		"additional_information": {
+		  "exchange": "KRX"
+		}
+	  }
+]

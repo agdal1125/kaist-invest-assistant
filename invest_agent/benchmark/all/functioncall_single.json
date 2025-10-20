@@ -1,0 +1,797 @@
+[
+	{
+		"multi_turn": false,
+		"initial_prompt": "올해 1월부터 3월까지의 환전내역을 확인하고 싶어",
+		"expected_response": {
+			"function_call": {
+				"name": "exchange_history",
+				"arguments": {
+					"start_date": "2025-01-01",
+					"end_date": "2025-03-31"
+				}
+			}
+		}
+	},
+	{
+		"multi_turn": false,
+		"initial_prompt": "2024년 4월 1일부터 4월 30일까지 환전내역 알려줘",
+		"expected_response": {
+			"function_call": {
+				"name": "exchange_history",
+				"arguments": {
+					"start_date": "2024-04-01",
+					"end_date": "2024-04-30"
+				}
+			}
+		}
+	},
+	{
+		"multi_turn": false,
+		"initial_prompt": "작년 12월 환전한 내역 보여줘",
+		"expected_response": {
+			"function_call": {
+				"name": "exchange_history",
+				"arguments": {
+					"start_date": "2024-12-01",
+					"end_date": "2024-12-31"
+				}
+			}
+		}
+	},
+	{
+		"multi_turn": false,
+		"initial_prompt": "10000원을 달러로 환전해줘",
+		"expected_response": {
+			"function_call": {
+				"name": "exchange",
+				"arguments": {
+					"currency_code": "KRW",
+					"exchange_currency_code": "USD",
+					"exchange_amount": 10000
+				}
+			}
+		}
+	},
+	{
+		"multi_turn": false,
+		"initial_prompt": "500달러를 엔화로 바꿔줘",
+		"expected_response": {
+			"function_call": {
+				"name": "exchange",
+				"arguments": {
+					"currency_code": "USD",
+					"exchange_currency_code": "JPY",
+					"exchange_amount": 500
+				}
+			}
+		}
+	},
+	{
+		"multi_turn": false,
+		"initial_prompt": "20000엔을 유로로 환전하고 싶어",
+		"expected_response": {
+			"function_call": {
+				"name": "exchange",
+				"arguments": {
+					"currency_code": "JPY",
+					"exchange_currency_code": "EUR",
+					"exchange_amount": 20000
+				}
+			}
+		}
+	},
+	{
+		"multi_turn": false,
+		"initial_prompt": "2025년 6월 1일 해외주식 매수 전체체결내역 보여줘",
+		"expected_response": {
+			"function_call": {
+				"name": "foreign_stock_conclusion_history",
+				"arguments": {
+					"transaction_type": "전체",
+					"trade_type": "매수",
+					"transaction_date": "2025-06-01"
+				}
+			}
+		}
+	},
+	{
+		"multi_turn": false,
+		"initial_prompt": "2025년 6월 1일 해외주식 매도 미체결내역 보여줘",
+		"expected_response": {
+			"function_call": {
+				"name": "foreign_stock_conclusion_history",
+				"arguments": {
+					"transaction_type": "미체결",
+					"trade_type": "매도",
+					"transaction_date": "2025-06-01"
+				}
+			}
+		}
+	},
+	{
+		"multi_turn": false,
+		"initial_prompt": "2025년 5월 15일 전체 해외주식 체결내역 알려줘",
+		"expected_response": {
+			"function_call": {
+				"name": "foreign_stock_conclusion_history",
+				"arguments": {
+					"transaction_type": "체결",
+					"trade_type": "전체",
+					"transaction_date": "2025-05-15"
+				}
+			}
+		}
+	},
+	{
+		"multi_turn": false,
+		"initial_prompt": "테슬라 미국 주식 현재가 알려줘",
+		"expected_response": {
+			"function_call": {
+				"name": "foreign_stock_current_price",
+				"arguments": {
+					"country_code": "USA",
+					"stock_code": "TSLA"
+				}
+			}
+		}
+	},
+	{
+		"multi_turn": false,
+		"initial_prompt": "닌텐도(7974) 일본 주식 현재가 알려줘",
+		"expected_response": {
+			"function_call": {
+				"name": "foreign_stock_current_price",
+				"arguments": {
+					"country_code": "JPN",
+					"stock_code": "7974"
+				}
+			}
+		}
+	},
+	{
+		"multi_turn": false,
+		"initial_prompt": "애플(US:AAPL) 주식 현재가 보여줘",
+		"expected_response": {
+			"function_call": {
+				"name": "foreign_stock_current_price",
+				"arguments": {
+					"country_code": "USA",
+					"stock_code": "AAPL"
+				}
+			}
+		}
+	},
+	{
+		"multi_turn": false,
+		"initial_prompt": "삼성전자(005930) 주식 현재가 알려줘",
+		"expected_response": {
+			"function_call": {
+				"name": "stock_current_price",
+				"arguments": {
+					"stock_code": "034730"
+				}
+			}
+		}
+	},
+	{
+		"multi_turn": false,
+		"initial_prompt": "카카오(035720) 주식 시세 알려줘",
+		"expected_response": {
+			"function_call": {
+				"name": "stock_current_price",
+				"arguments": {
+					"stock_code": "035720"
+				}
+			}
+		}
+	},
+	{
+		"multi_turn": false,
+		"initial_prompt": "LG화학(051910) 주가 알려줘",
+		"expected_response": {
+			"function_call": {
+				"name": "stock_current_price",
+				"arguments": {
+					"stock_code": "051910"
+				}
+			}
+		}
+	},
+	{
+		"multi_turn": false,
+		"initial_prompt": "KRX 거래소에서 10주를 시장가로 50000원에 국내주식 주문해줘",
+		"expected_response": {
+			"function_call": {
+				"name": "domestic_stock_order",
+				"arguments": {
+					"exchange": "KRX",
+					"order_type": "시장가",
+					"quantity": 10,
+					"price": 50000
+				}
+			}
+		}
+	},
+	{
+		"multi_turn": false,
+		"initial_prompt": "NXT에서 20주를 보통가로 70000원에 주문해줘",
+		"expected_response": {
+			"function_call": {
+				"name": "domestic_stock_order",
+				"arguments": {
+					"exchange": "NXT",
+					"order_type": "보통가",
+					"quantity": 20,
+					"price": 70000
+				}
+			}
+		}
+	},
+	{
+		"multi_turn": false,
+		"initial_prompt": "스마트 주문으로 5주를 프리마켓 30000원에 주문해줘",
+		"expected_response": {
+			"function_call": {
+				"name": "domestic_stock_order",
+				"arguments": {
+					"exchange": "스마트 주문",
+					"order_type": "프리마켓",
+					"quantity": 5,
+					"price": 30000
+				}
+			}
+		}
+	},
+	{
+		"multi_turn": false,
+		"initial_prompt": "미국 달러로 해외주식 5주를 시장가로 100달러에 주문해줘",
+		"expected_response": {
+			"function_call": {
+				"name": "foreign_stock_order",
+				"arguments": {
+					"currency": "USD",
+					"order_type": "시장가",
+					"quantity": 5,
+					"price": 100
+				}
+			}
+		}
+	},
+	{
+		"multi_turn": false,
+		"initial_prompt": "엔화로 해외주식 3주를 애프터마켓 2000엔에 주문해줘",
+		"expected_response": {
+			"function_call": {
+				"name": "foreign_stock_order",
+				"arguments": {
+					"currency": "JPY",
+					"order_type": "애프터마켓",
+					"quantity": 3,
+					"price": 2000
+				}
+			}
+		}
+	},
+	{
+		"multi_turn": false,
+		"initial_prompt": "유로로 해외주식 2주를 주간거래 50유로에 주문해줘",
+		"expected_response": {
+			"function_call": {
+				"name": "foreign_stock_order",
+				"arguments": {
+					"currency": "EUR",
+					"order_type": "주간거래",
+					"quantity": 2,
+					"price": 50
+				}
+			}
+		}
+	},
+	{
+		"multi_turn": false,
+		"initial_prompt": "올해 확정 배당 내역 알려줘",
+		"expected_response": {
+			"function_call": {
+				"name": "dividend",
+				"arguments": {
+					"confirmed": "확정",
+					"period": "2025"
+				}
+			}
+		}
+	},
+	{
+		"multi_turn": false,
+		"initial_prompt": "2024년 예상 배당 내역 알려줘",
+		"expected_response": {
+			"function_call": {
+				"name": "dividend",
+				"arguments": {
+					"confirmed": "예상",
+					"period": "2024"
+				}
+			}
+		}
+	},
+	{
+		"multi_turn": false,
+		"initial_prompt": "2023년 확정+예상 배당금 내역 보여줘",
+		"expected_response": {
+			"function_call": {
+				"name": "dividend",
+				"arguments": {
+					"confirmed": "확정+예상",
+					"period": "2023"
+				}
+			}
+		}
+	},
+	{
+		"multi_turn": false,
+		"initial_prompt": "주식 모으기 메뉴로 이동해줘",
+		"expected_response": {
+			"function_call": {
+				"name": "stock_collection",
+				"arguments": {}
+			}
+		}
+	},
+	{
+		"multi_turn": false,
+		"initial_prompt": "주식 모으기 시작해줘",
+		"expected_response": {
+			"function_call": {
+				"name": "stock_collection",
+				"arguments": {}
+			}
+		}
+	},
+	{
+		"multi_turn": false,
+		"initial_prompt": "주식 모으기 기능 실행해줘",
+		"expected_response": {
+			"function_call": {
+				"name": "stock_collection",
+				"arguments": {}
+			}
+		}
+	},
+	{
+		"multi_turn": false,
+		"initial_prompt": "2025년 6월 1일 국내주식 매수 체결내역 보여줘",
+		"expected_response": {
+			"function_call": {
+				"name": "domestic_stock_conclusion_history",
+				"arguments": {
+					"type": "체결",
+					"sub_type": "매수",
+					"date": "2025-06-01"
+				}
+			}
+		}
+	},
+	{
+		"multi_turn": false,
+		"initial_prompt": "2025년 6월 1일 국내주식 매도 미체결내역 보여줘",
+		"expected_response": {
+			"function_call": {
+				"name": "domestic_stock_conclusion_history",
+				"arguments": {
+					"type": "미체결",
+					"sub_type": "매도",
+					"date": "2025-06-01"
+				}
+			}
+		}
+	},
+	{
+		"multi_turn": false,
+		"initial_prompt": "2025년 5월 15일 전체 국내주식 체결내역 알려줘",
+		"expected_response": {
+			"function_call": {
+				"name": "domestic_stock_conclusion_history",
+				"arguments": {
+					"type": "체결",
+					"sub_type": "전체",
+					"date": "2025-05-15"
+				}
+			}
+		}
+	},
+	{
+		"multi_turn": false,
+		"initial_prompt": "국내주식 잔고와 손익 알려줘",
+		"expected_response": {
+			"function_call": {
+				"name": "domestic_stock_profit_loss",
+				"arguments": {}
+			}
+		}
+	},
+	{
+		"multi_turn": false,
+		"initial_prompt": "국내주식 전체 잔고와 손익 현황 알려줘",
+		"expected_response": {
+			"function_call": {
+				"name": "domestic_stock_profit_loss",
+				"arguments": {}
+			}
+		}
+	},
+	{
+		"multi_turn": false,
+		"initial_prompt": "내 국내주식 손익 내역 보여줘",
+		"expected_response": {
+			"function_call": {
+				"name": "domestic_stock_profit_loss",
+				"arguments": {}
+			}
+		}
+	},
+	{
+		"multi_turn": false,
+		"initial_prompt": "외화주식 3개월 거래내역 보여줘 (계좌: 12345678)",
+		"expected_response": {
+			"function_call": {
+				"name": "foreign_stock_transaction_history",
+				"arguments": {
+					"account": "12345678",
+					"category": "전체",
+					"type": "외화주식",
+					"period": "3개월"
+				}
+			}
+		}
+	},
+	{
+		"multi_turn": false,
+		"initial_prompt": "외화채권 1주 거래내역 보여줘 (계좌: 87654321)",
+		"expected_response": {
+			"function_call": {
+				"name": "foreign_stock_transaction_history",
+				"arguments": {
+					"account": "87654321",
+					"category": "전체",
+					"type": "외화채권",
+					"period": "1주"
+				}
+			}
+		}
+	},
+	{
+		"multi_turn": false,
+		"initial_prompt": "외화주식 1개월 입금내역 보여줘 (계좌: 12345678)",
+		"expected_response": {
+			"function_call": {
+				"name": "foreign_stock_transaction_history",
+				"arguments": {
+					"account": "12345678",
+					"category": "입금",
+					"type": "외화주식",
+					"period": "1개월"
+				}
+			}
+		}
+	},
+	{
+		"multi_turn": false,
+		"initial_prompt": "지수와 환율 알려줘",
+		"expected_response": {
+			"function_call": {
+				"name": "index_exchange_rate",
+				"arguments": {}
+			}
+		}
+	},
+	{
+		"multi_turn": false,
+		"initial_prompt": "오늘의 지수와 환율 알려줘",
+		"expected_response": {
+			"function_call": {
+				"name": "index_exchange_rate",
+				"arguments": {}
+			}
+		}
+	},
+	{
+		"multi_turn": false,
+		"initial_prompt": "최근 환율과 주요 지수 보여줘",
+		"expected_response": {
+			"function_call": {
+				"name": "index_exchange_rate",
+				"arguments": {}
+			}
+		}
+	},
+	{
+		"multi_turn": false,
+		"initial_prompt": "NH QV 발행어음_개인 상품을 2025-01-01~2025-12-31 동안 계좌 12345678로 1000000원 매수해줘",
+		"expected_response": {
+			"function_call": {
+				"name": "bond_order",
+				"arguments": {
+					"product_name": "NH QV 발행어음_개인",
+					"investment_period": "2025-01-01~2025-12-31",
+					"account": "12345678",
+					"amount": 1000000
+				}
+			}
+		}
+	},
+	{
+		"multi_turn": false,
+		"initial_prompt": "NH QV 발행어음_개인 상품을 2024-01-01~2024-12-31 동안 계좌 11112222로 2000000원 매수해줘",
+		"expected_response": {
+			"function_call": {
+				"name": "bond_order",
+				"arguments": {
+					"product_name": "NH QV 발행어음_개인",
+					"investment_period": "2024-01-01~2024-12-31",
+					"account": "11112222",
+					"amount": 2000000
+				}
+			}
+		}
+	},
+	{
+		"multi_turn": false,
+		"initial_prompt": "NH QV 발행어음_개인 상품을 2023-06-01~2023-12-31 동안 계좌 33334444로 500000원 매수해줘",
+		"expected_response": {
+			"function_call": {
+				"name": "bond_order",
+				"arguments": {
+					"product_name": "NH QV 발행어음_개인",
+					"investment_period": "2023-06-01~2023-12-31",
+					"account": "33334444",
+					"amount": 500000
+				}
+			}
+		}
+	},
+	{
+		"multi_turn": false,
+		"initial_prompt": "NH QV USD 발행어음_개인 상품을 2025-01-01~2025-12-31 동안 계좌 12345678로 5000달러 매수해줘",
+		"expected_response": {
+			"function_call": {
+				"name": "foreign_bond_order",
+				"arguments": {
+					"product_name": "NH QV USD 발행어음_개인",
+					"investment_period": "2025-01-01~2025-12-31",
+					"account": "12345678",
+					"amount": 5000
+				}
+			}
+		}
+	},
+	{
+		"multi_turn": false,
+		"initial_prompt": "NH QV USD 발행어음_개인 상품을 2024-01-01~2024-12-31 동안 계좌 22221111로 10000달러 매수해줘",
+		"expected_response": {
+			"function_call": {
+				"name": "foreign_bond_order",
+				"arguments": {
+					"product_name": "NH QV USD 발행어음_개인",
+					"investment_period": "2024-01-01~2024-12-31",
+					"account": "22221111",
+					"amount": 10000
+				}
+			}
+		}
+	},
+	{
+		"multi_turn": false,
+		"initial_prompt": "NH QV USD 발행어음_개인 상품을 2023-06-01~2023-12-31 동안 계좌 44443333로 3000달러 매수해줘",
+		"expected_response": {
+			"function_call": {
+				"name": "foreign_bond_order",
+				"arguments": {
+					"product_name": "NH QV USD 발행어음_개인",
+					"investment_period": "2023-06-01~2023-12-31",
+					"account": "44443333",
+					"amount": 3000
+				}
+			}
+		}
+	},
+	{
+		"multi_turn": false,
+		"initial_prompt": "계좌의 자산추이 보여줘",
+		"expected_response": {
+			"function_call": {
+				"name": "account_asset_history",
+				"arguments": {}
+			}
+		}
+	},
+	{
+		"multi_turn": false,
+		"initial_prompt": "최근 계좌 자산추이 보여줘",
+		"expected_response": {
+			"function_call": {
+				"name": "account_asset_history",
+				"arguments": {}
+			}
+		}
+	},
+	{
+		"multi_turn": false,
+		"initial_prompt": "내 계좌 자산 변화 내역 보여줘",
+		"expected_response": {
+			"function_call": {
+				"name": "account_asset_history",
+				"arguments": {}
+			}
+		}
+	},
+	{
+		"multi_turn": false,
+		"initial_prompt": "50000원을 국민은행 123-456-7890 계좌로 이체해줘 (비밀번호: 1234)",
+		"expected_response": {
+			"function_call": {
+				"name": "transfer",
+				"arguments": {
+					"amount": 50000,
+					"bank_name": "국민은행",
+					"account_number": "123-456-7890",
+					"password": "1234"
+				}
+			}
+		}
+	},
+	{
+		"multi_turn": false,
+		"initial_prompt": "100000원을 신한은행 987-654-3210 계좌로 이체해줘 (비밀번호: 5678)",
+		"expected_response": {
+			"function_call": {
+				"name": "transfer",
+				"arguments": {
+					"amount": 100000,
+					"bank_name": "신한은행",
+					"account_number": "987-654-3210",
+					"password": "5678"
+				}
+			}
+		}
+	},
+	{
+		"multi_turn": false,
+		"initial_prompt": "25000원을 우리은행 111-222-3333 계좌로 보내줘 (비밀번호: 0000)",
+		"expected_response": {
+			"function_call": {
+				"name": "transfer",
+				"arguments": {
+					"amount": 25000,
+					"bank_name": "우리은행",
+					"account_number": "111-222-3333",
+					"password": "0000"
+				}
+			}
+		}
+	},
+	{
+		"multi_turn": false,
+		"initial_prompt": "공모청약 이용가이드 알려줘",
+		"expected_response": {
+			"function_call": {
+				"name": "ipo_guide",
+				"arguments": {}
+			}
+		}
+	},
+	{
+		"multi_turn": false,
+		"initial_prompt": "공모청약 가이드북 보여줘",
+		"expected_response": {
+			"function_call": {
+				"name": "ipo_guide",
+				"arguments": {}
+			}
+		}
+	},
+	{
+		"multi_turn": false,
+		"initial_prompt": "공모청약 안내 알려줘",
+		"expected_response": {
+			"function_call": {
+				"name": "ipo_guide",
+				"arguments": {}
+			}
+		}
+	},
+	{
+		"multi_turn": false,
+		"initial_prompt": "내 통합자산 알려줘",
+		"expected_response": {
+			"function_call": {
+				"name": "total_asset",
+				"arguments": {}
+			}
+		}
+	},
+	{
+		"multi_turn": false,
+		"initial_prompt": "전체 자산 현황 보여줘",
+		"expected_response": {
+			"function_call": {
+				"name": "total_asset",
+				"arguments": {}
+			}
+		}
+	},
+	{
+		"multi_turn": false,
+		"initial_prompt": "내 모든 자산 알려줘",
+		"expected_response": {
+			"function_call": {
+				"name": "total_asset",
+				"arguments": {}
+			}
+		}
+	},
+	{
+		"multi_turn": false,
+		"initial_prompt": "국내 종목 실시간 BEST 관심그룹 보여줘",
+		"expected_response": {
+			"function_call": {
+				"name": "interest_group",
+				"arguments": {
+					"group_name": "국내 종목 실시간 BEST"
+				}
+			}
+		}
+	},
+	{
+		"multi_turn": false,
+		"initial_prompt": "해외 종목 실시간 Best 관심그룹 보여줘",
+		"expected_response": {
+			"function_call": {
+				"name": "interest_group",
+				"arguments": {
+					"group_name": "해외 종목 실시간 Best"
+				}
+			}
+		}
+	},
+	{
+		"multi_turn": false,
+		"initial_prompt": "국내투자고수의 선택 관심그룹 알려줘",
+		"expected_response": {
+			"function_call": {
+				"name": "interest_group",
+				"arguments": {
+					"group_name": "국내투자고수의 선택"
+				}
+			}
+		}
+	},
+	{
+		"multi_turn": false,
+		"initial_prompt": "최근 거래내역 보여줘",
+		"expected_response": {
+			"function_call": {
+				"name": "transaction_history",
+				"arguments": {}
+			}
+		}
+	},
+	{
+		"multi_turn": false,
+		"initial_prompt": "거래내역 보여줘",
+		"expected_response": {
+			"function_call": {
+				"name": "transaction_history",
+				"arguments": {}
+			}
+		}
+	},
+	{
+		"multi_turn": false,
+		"initial_prompt": "거래내역 확인하고 싶어",
+		"expected_response": {
+			"function_call": {
+				"name": "transaction_history",
+				"arguments": {}
+			}
+		}
+	}	
+]

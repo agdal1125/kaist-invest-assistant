@@ -1,0 +1,128 @@
+Prompt:  올해 1월부터 3월까지의 환전내역을 확인하고 싶어
+Correct:  False
+Prompt:  2024년 4월 1일부터 4월 30일까지 환전내역 알려줘
+Correct:  False
+Prompt:  작년 12월 환전한 내역 보여줘
+Correct:  False
+Prompt:  10000원을 달러로 환전해줘
+Correct:  False
+Prompt:  500달러를 엔화로 바꿔줘
+Correct:  False
+Prompt:  20000엔을 유로로 환전하고 싶어
+Correct:  False
+Prompt:  2025년 6월 1일 해외주식 매수 전체체결내역 보여줘
+Correct:  True
+Prompt:  2025년 6월 1일 해외주식 매도 미체결내역 보여줘
+Correct:  False
+Prompt:  2025년 5월 15일 전체 해외주식 체결내역 알려줘
+Correct:  False
+Prompt:  테슬라 미국 주식 현재가 알려줘
+Correct:  False
+Prompt:  닌텐도(7974) 일본 주식 현재가 알려줘
+Correct:  False
+Prompt:  애플(US:AAPL) 주식 현재가 보여줘
+Correct:  False
+Prompt:  삼성전자(005930) 주식 현재가 알려줘
+Correct:  False
+Prompt:  카카오(035720) 주식 시세 알려줘
+Correct:  True
+Prompt:  LG화학(051910) 주가 알려줘
+Correct:  True
+Prompt:  KRX 거래소에서 10주를 시장가로 50000원에 국내주식 주문해줘
+Correct:  False
+Prompt:  NXT에서 20주를 보통가로 70000원에 주문해줘
+Correct:  False
+Prompt:  스마트 주문으로 5주를 프리마켓 30000원에 주문해줘
+Correct:  False
+Prompt:  미국 달러로 해외주식 5주를 시장가로 100달러에 주문해줘
+Correct:  False
+Prompt:  엔화로 해외주식 3주를 애프터마켓 2000엔에 주문해줘
+Correct:  False
+Prompt:  유로로 해외주식 2주를 주간거래 50유로에 주문해줘
+Correct:  True
+Prompt:  올해 확정 배당 내역 알려줘
+Correct:  False
+Prompt:  2024년 예상 배당 내역 알려줘
+Correct:  True
+Prompt:  2023년 확정+예상 배당금 내역 보여줘
+Correct:  True
+Prompt:  주식 모으기 메뉴로 이동해줘
+Correct:  True
+Prompt:  주식 모으기 시작해줘
+Correct:  True
+Prompt:  주식 모으기 기능 실행해줘
+Correct:  True
+Prompt:  2025년 6월 1일 국내주식 매수 체결내역 보여줘
+Correct:  True
+Prompt:  2025년 6월 1일 국내주식 매도 미체결내역 보여줘
+Correct:  False
+Prompt:  2025년 5월 15일 전체 국내주식 체결내역 알려줘
+Correct:  False
+Prompt:  국내주식 잔고와 손익 알려줘
+Correct:  False
+Prompt:  국내주식 전체 잔고와 손익 현황 알려줘
+Correct:  True
+Prompt:  내 국내주식 손익 내역 보여줘
+Correct:  True
+Prompt:  외화주식 3개월 거래내역 보여줘 (계좌: 12345678)
+Correct:  False
+Prompt:  외화채권 1주 거래내역 보여줘 (계좌: 87654321)
+Correct:  False
+Prompt:  외화주식 1개월 입금내역 보여줘 (계좌: 12345678)
+Correct:  False
+Prompt:  지수와 환율 알려줘
+Correct:  True
+Prompt:  오늘의 지수와 환율 알려줘
+Correct:  True
+Prompt:  최근 환율과 주요 지수 보여줘
+Correct:  False
+Prompt:  NH QV 발행어음_개인 상품을 2025-01-01~2025-12-31 동안 계좌 12345678로 1000000원 매수해줘
+Correct:  False
+Prompt:  NH QV 발행어음_개인 상품을 2024-01-01~2024-12-31 동안 계좌 11112222로 2000000원 매수해줘
+Correct:  False
+Prompt:  NH QV 발행어음_개인 상품을 2023-06-01~2023-12-31 동안 계좌 33334444로 500000원 매수해줘
+Correct:  False
+Prompt:  NH QV USD 발행어음_개인 상품을 2025-01-01~2025-12-31 동안 계좌 12345678로 5000달러 매수해줘
+Correct:  False
+Prompt:  NH QV USD 발행어음_개인 상품을 2024-01-01~2024-12-31 동안 계좌 22221111로 10000달러 매수해줘
+Correct:  False
+Prompt:  NH QV USD 발행어음_개인 상품을 2023-06-01~2023-12-31 동안 계좌 44443333로 3000달러 매수해줘
+Correct:  False
+Prompt:  계좌의 자산추이 보여줘
+Correct:  True
+Prompt:  최근 계좌 자산추이 보여줘
+Correct:  True
+Prompt:  내 계좌 자산 변화 내역 보여줘
+Correct:  True
+Prompt:  50000원을 국민은행 123-456-7890 계좌로 이체해줘 (비밀번호: 1234)
+Correct:  False
+Prompt:  100000원을 신한은행 987-654-3210 계좌로 이체해줘 (비밀번호: 5678)
+Correct:  False
+Prompt:  25000원을 우리은행 111-222-3333 계좌로 보내줘 (비밀번호: 0000)
+Correct:  False
+Prompt:  공모청약 이용가이드 알려줘
+Correct:  True
+Prompt:  공모청약 가이드북 보여줘
+Correct:  True
+Prompt:  공모청약 안내 알려줘
+Correct:  True
+Prompt:  내 통합자산 알려줘
+Correct:  True
+Prompt:  전체 자산 현황 보여줘
+Correct:  True
+Prompt:  내 모든 자산 알려줘
+Correct:  True
+Prompt:  국내 종목 실시간 BEST 관심그룹 보여줘
+Correct:  True
+Prompt:  해외 종목 실시간 Best 관심그룹 보여줘
+Correct:  True
+Prompt:  국내투자고수의 선택 관심그룹 알려줘
+Correct:  True
+Prompt:  최근 거래내역 보여줘
+Correct:  True
+Prompt:  거래내역 보여줘
+Correct:  True
+Prompt:  거래내역 확인하고 싶어
+Correct:  False
+[0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0]
+0.4444444444444444

@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI 투자 어시스턴트</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #047dc4 0%, #035a8f 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .chatbot-container {
+            width: 100%;
+            max-width: 1000px;
+            height: 80vh;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .chatbot-header {
+            background: linear-gradient(135deg, #047dc4 0%, #035a8f 100%);
+            color: white;
+            padding: 20px 30px 0 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            position: relative;
+        }
+
+        .header-top {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .chatbot-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #fcbc43 0%, #f8a726 50%, #fcbc43 100%);
+        }
+
+        .bot-avatar {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #fcbc43 0%, #f8a726 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: white;
+            box-shadow: 0 4px 15px rgba(252, 188, 67, 0.4);
+        }
+
+        .header-info h1 {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .header-info p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .tabs-container {
+            display: flex;
+            gap: 10px;
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+
+        .tab-button {
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            border-radius: 10px 10px 0 0;
+            padding: 12px 24px;
+            color: white;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            opacity: 0.7;
+        }
+
+        .tab-button:hover {
+            opacity: 0.9;
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .tab-button.active {
+            background: white;
+            color: #047dc4;
+            opacity: 1;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+        }
+
+        .time-selector {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+            color: white;
+            margin-left: auto;
+            margin-right: 20px;
+        }
+
+        .time-selector label {
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        .time-selector input[type="datetime-local"] {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 6px;
+            padding: 6px 10px;
+            color: white;
+            font-size: 13px;
+        }
+
+        .time-selector input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+            filter: invert(1);
+        }
+
+        .time-apply-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 6px;
+            padding: 6px 12px;
+            color: white;
+            cursor: pointer;
+            font-size: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .time-apply-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-1px);
+        }
+
+        .status-indicator {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: #4CAF50;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+
+        .chat-area {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            background: #f8f9fa;
+            position: relative;
+            display: none;
+        }
+
+        .chat-area.active {
+            display: block;
+        }
+
+        .chat-area::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .chat-area::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 3px;
+        }
+
+        .chat-area::-webkit-scrollbar-thumb {
+            background: #047dc4;
+            border-radius: 3px;
+        }
+
+        .message {
+            margin-bottom: 20px;
+            display: flex;
+            align-items: flex-end;
+            gap: 12px;
+            animation: fadeInUp 0.3s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .message.user-message {
+            flex-direction: row-reverse;
+        }
+
+        .message-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            flex-shrink: 0;
+        }
+
+        .user-message .message-avatar {
+            background: linear-gradient(135deg, #047dc4 0%, #035a8f 100%);
+            color: white;
+        }
+
+        .bot-message .message-avatar {
+            background: linear-gradient(135deg, #fcbc43 0%, #f8a726 100%);
+            color: white;
+        }
+
+        .message-content {
+            max-width: 70%;
+            padding: 15px 20px;
+            border-radius: 20px;
+            position: relative;
+            word-wrap: break-word;
+        }
+
+        .user-message .message-content {
+            background: linear-gradient(135deg, #047dc4 0%, #035a8f 100%);
+            color: white;
+            border-bottom-right-radius: 5px;
+        }
+
+        .bot-message .message-content {
+            background: white;
+            color: #333;
+            border: 1px solid #e9ecef;
+            border-bottom-left-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .tool-calls {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-left: 4px solid #fcbc43;
+            padding: 15px;
+            margin-top: 10px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            color: #495057;
+            white-space: pre-wrap;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .input-section {
+            padding: 20px 30px;
+            background: white;
+            border-top: 1px solid #e9ecef;
+            position: relative;
+        }
+
+        .input-container {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            background: #f8f9fa;
+            border-radius: 25px;
+            padding: 5px;
+            border: 2px solid #e9ecef;
+            transition: all 0.3s ease;
+        }
+
+        .input-container:focus-within {
+            border-color: #047dc4;
+            box-shadow: 0 0 0 3px rgba(4, 125, 196, 0.1);
+        }
+
+        .message-input {
+            flex: 1;
+            border: none;
+            background: transparent;
+            padding: 15px 20px;
+            font-size: 16px;
+            outline: none;
+            color: #333;
+        }
+
+        .message-input::placeholder {
+            color: #6c757d;
+        }
+
+        .send-button {
+            width: 50px;
+            height: 50px;
+            border: none;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #047dc4 0%, #035a8f 100%);
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(4, 125, 196, 0.3);
+        }
+
+        .send-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(4, 125, 196, 0.4);
+        }
+
+        .reset-button {
+            width: 50px;
+            height: 50px;
+            border: none;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(220, 53, 69, 0.3);
+        }
+
+        .reset-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(220, 53, 69, 0.4);
+        }
+
+        .typing-indicator {
+            display: none;
+            align-items: center;
+            gap: 8px;
+            padding: 15px 20px;
+            color: #6c757d;
+            font-style: italic;
+        }
+
+        .typing-dots {
+            display: flex;
+            gap: 4px;
+        }
+
+        .typing-dot {
+            width: 6px;
+            height: 6px;
+            background: #047dc4;
+            border-radius: 50%;
+            animation: typing 1.4s infinite;
+        }
+
+        .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+        .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes typing {
+            0%, 60%, 100% { transform: translateY(0); }
+            30% { transform: translateY(-10px); }
+        }
+
+        .welcome-message {
+            text-align: center;
+            padding: 40px 20px;
+            color: #6c757d;
+        }
+
+        .welcome-message h3 {
+            color: #047dc4;
+            margin-bottom: 10px;
+            font-size: 20px;
+        }
+
+        .welcome-message p {
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            .chatbot-container {
+                height: 90vh;
+                border-radius: 0;
+            }
+            
+            .chatbot-header {
+                padding: 15px 20px 0 20px;
+            }
+
+            .header-top {
+                flex-wrap: wrap;
+            }
+            
+            .header-info h1 {
+                font-size: 20px;
+            }
+            
+            .message-content {
+                max-width: 85%;
+            }
+
+            .tabs-container {
+                width: 100%;
+                justify-content: space-between;
+            }
+
+            .tab-button {
+                flex: 1;
+                padding: 10px 12px;
+                font-size: 13px;
+            }
+
+            .time-selector {
+                flex-direction: column;
+                gap: 5px;
+                margin-right: 10px;
+            }
+
+            .time-selector input[type="datetime-local"] {
+                font-size: 11px;
+                padding: 4px 8px;
+            }
+
+            .time-apply-btn {
+                font-size: 11px;
+                padding: 4px 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="chatbot-container">
+        <div class="chatbot-header">
+            <div class="header-top">
+                <div class="bot-avatar">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <div class="header-info">
+                    <h1>AI 투자 비서</h1>
+                    <p>당신만을 위한 NH 투자증권</p>
+                </div>
+                <div class="time-selector">
+                    <label for="datetimeInput">거래 시간:</label>
+                    <input type="datetime-local" id="datetimeInput" value="2025-02-08T10:00">
+                    <button class="time-apply-btn" onclick="applyTime()">적용</button>
+                </div>
+                <div class="status-indicator">
+                    <div class="status-dot"></div>
+                    <span>온라인</span>
+                </div>
+            </div>
+            <div class="tabs-container">
+                <button class="tab-button" data-agent="stock" onclick="switchTab('stock')">주식 거래</button>
+                <button class="tab-button" data-agent="etf" onclick="switchTab('etf')">ETF 거래</button>
+                <button class="tab-button" data-agent="all" onclick="switchTab('all')">통합 에이전트</button>
+            </div>
+        </div>
+
+        <div class="chat-area" id="chatContainer-stock" data-agent="stock">
+            <div class="welcome-message">
+                <h3><i class="fas fa-chart-line"></i> 주식 거래 에이전트</h3>
+                <p>주식 매매에 대해 문의해주세요.</p>
+            </div>
+        </div>
+
+        <div class="chat-area" id="chatContainer-etf" data-agent="etf">
+            <div class="welcome-message">
+                <h3><i class="fas fa-chart-bar"></i> ETF 거래 에이전트</h3>
+                <p>ETF 매매에 대해 문의해주세요.</p>
+            </div>
+        </div>
+
+        <div class="chat-area" id="chatContainer-all" data-agent="all">
+            <div class="welcome-message">
+                <h3><i class="fas fa-brain"></i> 통합 에이전트</h3>
+                <p>모든 기능을 사용할 수 있습니다.</p>
+            </div>
+        </div>
+
+        <div class="input-section">
+            <div class="input-container">
+                <input type="text" id="messageInput" class="message-input" placeholder="AI 투자 비서에게 무엇이든 물어보세요" onkeypress="handleKeyPress(event)">
+                <button class="send-button" onclick="sendMessage()">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+                <button class="reset-button" onclick="resetChat()" title="대화 초기화">
+                    <i class="fas fa-redo"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const socket = io();
+        let currentAgent = 'stock';
+        const messageInput = document.getElementById('messageInput');
+
+        function getCurrentChatContainer() {
+            return document.getElementById(`chatContainer-${currentAgent}`);
+        }
+
+        function switchTab(agentType) {
+            // Update current agent
+            currentAgent = agentType;
+            
+            // Update tab buttons
+            document.querySelectorAll('.tab-button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.querySelector(`[data-agent="${agentType}"]`).classList.add('active');
+            
+            // Update chat areas
+            document.querySelectorAll('.chat-area').forEach(area => {
+                area.classList.remove('active');
+            });
+            document.getElementById(`chatContainer-${agentType}`).classList.add('active');
+            
+            // Focus input
+            messageInput.focus();
+        }
+
+        function addMessage(content, isUser, toolCalls = null, agentType = null) {
+            const targetAgent = agentType || currentAgent;
+            const chatContainer = document.getElementById(`chatContainer-${targetAgent}`);
+            
+            // Remove welcome message if it exists
+            const welcomeMessage = chatContainer.querySelector('.welcome-message');
+            if (welcomeMessage) {
+                welcomeMessage.remove();
+            }
+
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${isUser ? 'user-message' : 'bot-message'}`;
+            
+            const avatar = document.createElement('div');
+            avatar.className = 'message-avatar';
+            avatar.innerHTML = isUser ? '<i class="fas fa-user"></i>' : '<i class="fas fa-robot"></i>';
+            
+            const contentDiv = document.createElement('div');
+            contentDiv.className = 'message-content';
+            contentDiv.innerHTML = content.replace(/\n/g, '<br>');
+            
+            messageDiv.appendChild(avatar);
+            messageDiv.appendChild(contentDiv);
+            
+            if (toolCalls) {
+                const toolCallsDiv = document.createElement('div');
+                toolCallsDiv.className = 'tool-calls';
+                toolCallsDiv.textContent = toolCalls;
+                contentDiv.appendChild(toolCallsDiv);
+            }
+            
+            chatContainer.appendChild(messageDiv);
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
+
+        function showTypingIndicator() {
+            const chatContainer = getCurrentChatContainer();
+            const typingDiv = document.createElement('div');
+            typingDiv.className = 'message bot-message typing-indicator';
+            typingDiv.id = `typing-indicator-${currentAgent}`;
+            typingDiv.innerHTML = `
+                <div class="message-avatar">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <div class="message-content">
+                    <span>AI가 답변을 작성 중입니다</span>
+                    <div class="typing-dots">
+                        <div class="typing-dot"></div>
+                        <div class="typing-dot"></div>
+                        <div class="typing-dot"></div>
+                    </div>
+                </div>
+            `;
+            chatContainer.appendChild(typingDiv);
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
+
+        function hideTypingIndicator(agentType = null) {
+            const targetAgent = agentType || currentAgent;
+            const typingIndicator = document.getElementById(`typing-indicator-${targetAgent}`);
+            if (typingIndicator) {
+                typingIndicator.remove();
+            }
+        }
+
+        function sendMessage() {
+            const message = messageInput.value.trim();
+            if (message) {
+                addMessage(message, true);
+                socket.emit('send_message', { 
+                    message: message,
+                    agent_type: currentAgent 
+                });
+                messageInput.value = '';
+                showTypingIndicator();
+            }
+        }
+
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        }
+
+        function applyTime() {
+            const datetimeInput = document.getElementById('datetimeInput');
+            const selectedTime = datetimeInput.value;
+            if (selectedTime) {
+                socket.emit('set_time', { 
+                    datetime: selectedTime,
+                    agent_type: currentAgent 
+                });
+            }
+        }
+
+        function resetChat() {
+            const chatContainer = getCurrentChatContainer();
+            socket.emit('reset', { agent_type: currentAgent });
+            // Clear chat container and show loading state
+            chatContainer.innerHTML = `
+                <div class="welcome-message">
+                    <h3><i class="fas fa-chart-line"></i> 초기화 중...</h3>
+                    <p>잠시만 기다려주세요.</p>
+                </div>
+            `;
+        }
+
+        socket.on('receive_message', function(data) {
+            const agentType = data.agent_type || currentAgent;
+            hideTypingIndicator(agentType);
+            addMessage(data.content, false, data.tool_calls, agentType);
+        });
+
+        // Load initial guide when page loads
+        window.onload = function() {
+            // Set default tab
+            switchTab('stock');
+            messageInput.focus();
+            loadInitialGuide('stock');
+            loadInitialGuide('etf');
+            loadInitialGuide('all');
+        };
+
+        // Load initial guide from server
+        function loadInitialGuide(agentType) {
+            fetch(`/api/initial_guide?agent_type=${agentType}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        const chatContainer = document.getElementById(`chatContainer-${agentType}`);
+                        
+                        // Remove welcome message
+                        const welcomeMessage = chatContainer.querySelector('.welcome-message');
+                        if (welcomeMessage) {
+                            welcomeMessage.remove();
+                        }
+                        
+                        // Add initial guide message
+                        addMessage(data.guide, false, null, agentType);
+                        
+                        // Update datetime input to match current time (only once)
+                        if (agentType === 'stock') {
+                            const datetimeInput = document.getElementById('datetimeInput');
+                            const currentTime = data.current_time.replace(' ', 'T').substring(0, 16);
+                            datetimeInput.value = currentTime;
+                        }
+                    }
+                })
+                .catch(error => {
+                    console.error('Error loading initial guide:', error);
+                });
+        }
+    </script>
+</body>
+</html> 
