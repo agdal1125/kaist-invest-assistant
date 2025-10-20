@@ -58,7 +58,11 @@ cd website
 python app.py
 ```
 
-웹 브라우저에서 `http://localhost:5000`으로 접속하여 투자 어시스턴트를 사용할 수 있습니다.
+### 4. 웹 애플리케이션 실행 예시
+
+<img width="745" height="804" alt="image" src="https://github.com/user-attachments/assets/807aca95-f263-47c4-9cd1-7f0d423a64ad" />
+
+웹 브라우저에서 `http://localhost:5023`으로 접속하여 투자 어시스턴트를 사용할 수 있습니다.
 
 ## 💡 주요 기능
 
